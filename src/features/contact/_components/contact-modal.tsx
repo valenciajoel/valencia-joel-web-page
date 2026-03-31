@@ -48,12 +48,12 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   return (
     <div 
       ref={overlayRef}
-      className="fixed inset-0 z-100 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 opacity-0"
+      className="fixed inset-0 z-100 flex items-start justify-center bg-black/60 backdrop-blur-sm p-4 opacity-0 overflow-y-auto sm:items-center"
       onClick={handleClose}
     >
       <div 
         ref={panelRef}
-        className="relative w-full max-w-lg bg-secondary/80 backdrop-blur-xl border border-border/30 rounded-2xl p-6 md:p-8 shadow-2xl modal-panel opacity-0 scale-90 max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-lg bg-secondary/80 backdrop-blur-xl border border-border/30 rounded-2xl p-6 md:p-8 shadow-2xl modal-panel opacity-0 scale-90 my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button 

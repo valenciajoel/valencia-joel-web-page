@@ -11,21 +11,27 @@ export function ConnectionPath() {
     
     const svgEl = pathRef.current;
     
-    // Configurar scrollTrigger para la animación de stroke-dashoffset
-    // Esta es una versión simplificada: la longitud real dependerá de las secciones.
+    // Sync the stroke animation end to the top boundary of the #contact section.
+    // This ensures the path "stops" precisely when it reaches the CTA, not the page bottom.
     gsap.to(svgEl, {
       strokeDashoffset: 0,
       scrollTrigger: {
         trigger: document.body,
         start: 'top top',
-        end: 'bottom bottom',
+        end: () => {
+          const contactSection = document.querySelector('#contact');
+          if (contactSection) {
+            return `top+=${contactSection.getBoundingClientRect().top + window.scrollY} top`;
+          }
+          return 'bottom bottom';
+        },
         scrub: 1,
       }
     });
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[-1] opacity-30 mix-blend-screen flex items-center justify-center">
+    <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-[-1] opacity-30 mix-blend-screen flex items-center justify-center">
       <svg className="w-px h-full" viewBox="0 0 2 1000" preserveAspectRatio="none">
         <line
            ref={pathRef as any}

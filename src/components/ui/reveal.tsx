@@ -9,6 +9,7 @@ interface RevealProps {
   delay?: number;
   duration?: number;
   stagger?: number;
+  clip?: boolean;
 }
 
 export function Reveal({ 
@@ -16,7 +17,8 @@ export function Reveal({
   mode = 'fade-up', 
   delay = 0, 
   duration = 0.8,
-  stagger = 0.1
+  stagger = 0.1,
+  clip = true,
 }: RevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -43,7 +45,7 @@ export function Reveal({
   return (
     <div 
       ref={containerRef} 
-      className="reveal-wrapper-outer overflow-hidden"
+      className={`reveal-wrapper-outer ${clip ? 'overflow-hidden' : 'overflow-visible'}`}
     >
       {children}
     </div>

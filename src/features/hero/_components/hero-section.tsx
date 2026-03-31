@@ -20,7 +20,7 @@ export function HeroSection() {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 md:px-8">
+    <section id="hero" className="relative min-h-svh flex flex-col items-center justify-center overflow-hidden px-4 md:px-8 pt-24 md:pt-0">
       <div className="z-10 text-center max-w-4xl mx-auto space-y-8">
         <div className="flex justify-center mb-6">
           <Reveal delay={0.2}>

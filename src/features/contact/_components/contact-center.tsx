@@ -6,12 +6,23 @@ import { Reveal } from "@/components/ui/reveal";
 import { ContactModal } from "./contact-modal";
 import { SocialProofBar } from "./social-proof-bar";
 import { AuroraBackground } from "./aurora-background";
+import { EmbracePath } from "./embrace-path";
 
 export function ContactCenter() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section id="contact" className="w-full flex-1 flex flex-col justify-center items-center py-40 rounded-t-3xl border-t border-border-active/20 bg-secondary/10 z-10 relative overflow-hidden mt-20">
+    <section id="contact" className="w-full h-screen min-h-[800px] flex flex-col justify-center items-center py-40 z-50 relative bg-[hsl(230,15%,4%)]">
+      {/* 
+        Solid opaque background (bg-[#0a0b10] matches the site's dark palette)
+        Ensures global ConnectionPath and Grid are hidden within this section.
+      */}
+      <div 
+        className="absolute inset-0 pointer-events-none" 
+        style={{ backgroundColor: "var(--color-secondary)", opacity: 0.1, zIndex: -1 }} 
+      />
+      
+      <EmbracePath />
       <AuroraBackground />
       
       <div className="relative z-10 text-center flex flex-col items-center px-4 w-full max-w-5xl">
@@ -33,12 +44,12 @@ export function ContactCenter() {
           </div>
         </Reveal>
 
-        <Reveal mode="fade-up" delay={0.4}>
+        <Reveal mode="fade-up" delay={0.4} clip={false}>
           <div className="w-full py-4 relative z-20">
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
               <button 
                 onClick={() => setIsModalOpen(true)}
-                className="group flex w-full md:w-auto items-center justify-center gap-2 px-10 py-5 bg-primary text-black font-mono font-bold uppercase rounded-sm hover:-translate-y-1 hover:shadow-[0_0_30px_hsla(199,100%,50%,0.6)] transition-all animate-pulse-glow"
+                className="cta-glow group flex w-full md:w-auto items-center justify-center gap-2 px-10 py-5 bg-primary text-black font-mono font-bold uppercase rounded-sm hover:-translate-y-1 transition-all animate-pulse-glow"
               >
                 <Zap className="w-5 h-5 group-hover:scale-110 transition-transform" /> Iniciar Proyecto
               </button>

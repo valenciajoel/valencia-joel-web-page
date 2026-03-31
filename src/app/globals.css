@@ -18,3 +18,26 @@ body {
   min-height: 100vh;
   margin: 0;
 }
+
+/* ── CTA Atmospheric Glow ───────────────────────────────────────────────── */
+/* True glow via pseudo-element + blur. No hard box boundary.                */
+.cta-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.cta-glow::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: var(--color-primary);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(28px);
+  transition: opacity 0.45s ease;
+}
+
+.cta-glow:hover::after {
+  opacity: 0.55;
+}
